@@ -1,0 +1,57 @@
+import random
+n=int(input("give a value for n"))#height of the board game
+m=int(input("give a value for m"))#width of the board game
+w=int(input("give a value for w"))#number of nodes
+
+
+
+
+def matricec(n:int,m:int):# creating a 2D array : the board game
+    list1=[]
+    matrice=[]
+    for i in range (n+1) :
+        for j in range (m+1) :
+            list1.append("None")
+        matrice.append(list1)
+        list1 =[]
+    return matrice
+
+
+def affichage(c) :#randomly generating w nodes on the game board
+
+ 
+ 
+ for i in range (w):
+  a=random.randint(0,n-1)
+  b=random.randint(0,m-1)
+  c[a][b]="node"
+ 
+ return c
+
+
+output=affichage(matricec(n,m))
+print(output)
+
+
+def résolution(t):        #determining the cordinates of the nodes and the neighboring ones 
+ registreInitial=[] #coordinates of the node we are looking at
+ registreHaut=[]. #coordinates of the neighboring ones
+ registreDroite=[]
+ for i in range (n+1):
+    for j in range (m+1):
+        if t[i][j]=="node" :
+            registreInitial.extend([i,j])
+
+            if t[i-1][j]=="node":
+                registreHaut.extend([i-1,j])
+            if t[i][j+1]=="node":
+                registreDroite.extend([i,j+1])
+ 
+ return registreHaut, registreDroite, registreInitial       #three lists with the coordinates 
+
+ 
+ 
+input=résolution(output)
+print(input)
+
+
